@@ -2,16 +2,82 @@
 <html lang="zh">
   <head>
     <meta charset="UTF-8" />
-    <title>Document</title>
+    <title>zd</title>
   </head>
   <body>
     <script>
+      // console.log(a); //变量提升机制 undefined
+      // console.log(window.a); //undefined
+      // console.log("a" in window); //true
+      //说明在变量提升阶段，在全局作用域中声明了一个变量a，此时就已经
+      //把a当做属性赋值给window了，只不过此时还没有给a赋值，默认值为undefined
+
+      // var a = 12;
+      // console.log(a); //全局变量   12
+      // console.log(window.a); //window的一个属性名a    12
       /* 
     在全局作用域下，声明一个变量也相当于给window全局对象设置了一个
-    属性，变量的值就是属性值。（私有作用域中声明的私有变量和window
-    没有关系）
+    属性，变量的值就是属性值。
+    （私有作用域中声明的私有变量和window没有关系）
     
      */
+      // var obj = { name: "zd" };
+      // console.log(obj.name);
+      // console.log(obj.age); //没有这个属性，所以是undefined
+      // console.log("name" in obj);
+      //in：检测当前这个属性名是不是属于这个对象
+
+      //全局变量值修改，window的属性值也会跟着改变
+      // a = 13;
+      // console.log(window.a);
+      // window.a = 14;
+      // console.log(a);
+      //全局变量和window中的属性存在“映射机制”，所谓映射机制就是一个改另一个也跟着改。
+
+      /* ****************************************************************** */
+
+      // console.log(a);报错
+      // console.log(window.a); //undefined  对象没有这个属性本来就不报错，就是undefined
+      // console.log("a" in window); //false
+      // a = 12; //并不是代码赋值，不加var实质上是给window设置一个属性a
+      // console.log(a);
+      // console.log(window.a);
+
+      // var a = 12,
+      //   b = 13; //这样写b是带var的
+      // var a = (b = 12); //这样写b是不带var的
+
+      console.log(a, b);
+      var a = 12,
+        b = 14;
+      function fn() {
+        console.log(a, b);
+        var a = (b = 17);
+        console.log(a, b);
+      }
+      fn();
+      console.log(a, b);
     </script>
   </body>
 </html>
+<!-- 
+【全局作用域中】
+加var本质是变量，至于window下为什么会有var的这个变量属性，是因为全局变量和
+window中的属性存在“映射机制”；
+
+不加var本质是window下的属性；
+
+注意：以后创建变量一定要加var！
+
+“映射机制”：两个东西之间的关系，一个东西改另一个东西也会跟着改。
+
+【私有作用域中】
+    带var和不带var也有区别，带var的在私有作用域变量提升阶段 都声明为私有变量，
+    和外界没有任何关系；不带var不是私有变量，会向他的上级作用域查找，看是否
+    为上级的变量，不是继续向上查找，一直找到window为止。我们把这种查找机制叫做
+    “作用域链”。
+
+    在私有作用域中操作的非私有变量，是一直操作别人的。
+
+
+ -->
