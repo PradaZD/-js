@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+  </head>
+  <body>
+    9
+    <script>
+      // function fn() {
+      /*
+        函数执行，先创建一个私有作用域，然后找是否有变量提升；
+        变量提升：无
+        私有作用域不带var，往上级作用域找b，一直找到window，window上没有
+        b；
+
+         */
+      //   console.log(b);
+      //   b = 13;
+      //   console.log("b" in window); //true 在作用域链查找的过程中，找到window
+      //   //也没有这个变量，相当于给window设置了一个属性b（window.b=13)
+      //   console.log(b);
+      // }
+      // fn();
+      // console.log(b);
+
+      window.b = 13;
+      console.log(b); //13
+      //只要在全局作用域下的，都可以省略window.,也就是window.b相当于b
+
+      //let是ES6中的，增强严谨性
+      let a = 13;
+      console.log(a); //13
+      console.log(window.a); //undefined
+    </script>
+  </body>
+</html>

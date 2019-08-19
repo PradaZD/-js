@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      /* 
+      变量提升：
+          var fn :只对等号左边进行变量提升
+          sum = AAAXXX;声明加定义都完成了
+      
+       */
+
+      sum();
+      // fn();
+      //变量提升阶段默认值是undefined，所以fn()函数执行就是undefined执行，会报错
+
+      //匿名函数之函数表达式
+      var fn = function() {
+        console.log(1);
+      }; //代码执行到这里，会把函数值赋值给fn
+      fn();
+
+      //普通函数
+      function sum() {
+        console.log(2);
+      }
+      // fn();
+      // sum();
+    </script>
+  </body>
+</html>
+<!-- 
+普通函数：
+    因为使用function来处理的，所以在变量提升阶段就完成了声明和定义，
+函数表达式：
+    拿var来声明一个变量，将函数表达式赋值给这个变量。而变量提升只对
+    等号左边进行变量提升，所以函数表达式在变量提升阶段只完成了声明，没有
+    定义。
+
+备注:真实函数中，更多的采用的是函数表达式的方式来创建函数。
+
+
+ -->
