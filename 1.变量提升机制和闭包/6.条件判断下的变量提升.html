@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      /* 
+      在当前作用域下，不管条件是否成立，都要进行变量提升。
+          => 带var的还是只声明
+          => 带function的在老版本浏览器的渲染机制下，声明加定义都处理，
+          为了迎合ES6中的块作用域，新版本浏览器对于函数（在条件判断中的函数）
+          不管条件是否成立，都只是先声明没有定义，类似于var。
+      
+       */
+      // console.log(a); //undefined
+      // if (1 === 1) {
+      //   var a = 12;
+      // }
+      // console.log(a);
+
+      /* 
+      第一阶段：变量提升
+               var a  => 在全局作用域下声明的全局变量也相当于
+               给window上设置了一个属性a；
+      
+       */
+      // console.log(a);
+      // if ("a" in window) {
+      //   var a = 100;
+      // }
+      // console.log(a);
+
+      f = function() {
+        return true;
+      };
+      g = function() {
+        return false;
+      };
+      ~(function() {
+        if (g() && [] == ![]) {
+          f = function() {
+            return false;
+          };
+          function g() {
+            return true;
+          }
+        }
+      })();
+      console.log(f());
+      console.log(g());
+      //听到第19分钟，后面没有继续学习
+      //条件判断下的变量提升有多坑没有看
+    </script>
+  </body>
+</html>

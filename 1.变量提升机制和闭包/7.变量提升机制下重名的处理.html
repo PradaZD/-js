@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      /* 
+    1.带var和function关键字声明相同的名字，这种也算是重名了；
+    （其实是一个fn，只是存储的值的类型不一样）
+
+      var fn = 12; //相当于window下有一个fn属性
+      function fn() {} //也相当于给window下加了一个fn的属性
+
+
+     */
+      /* 
+     2.关于重名的处理
+     如果名字重复了，不会重新声明，但是会重新定义（重新赋值）
+     不管是变量提升还是代码执行阶段都是如此。
+     
+      */
+
+      /* 
+      变量提升:
+          fn  = 1
+              = 2
+              = 3
+              = 4
+              
+
+       带function关键字的在变量提升阶段就完成了声明加定义，又因为重名，
+       所以在代码执行阶段fn就是最后一个赋值4；
+
+       带var的在变量提升阶段只把声明处理了，赋值操作没有完成，所以
+       在代码执行的时候需要完成赋值，fn=100，所以fn()相当于100执行，报错，
+       下面代码不执行。
+
+      
+       */
+      fn();
+      function fn() {
+        console.log(1);
+      }
+      fn();
+      function fn() {
+        console.log(2);
+      }
+      fn();
+      var fn = 100;
+      fn();
+      function fn() {
+        console.log(3);
+      }
+      fn();
+      function fn() {
+        console.log(4);
+      }
+      fn();
+    </script>
+  </body>
+</html>
