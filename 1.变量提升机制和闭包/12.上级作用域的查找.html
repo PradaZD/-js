@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      /* 
+      当前函数执行，形成一个私有作用域A，A的上级作用域是谁，和他在哪里
+      执行没有关系，和他在哪里创建（定义）有关系；
+      在哪里创建，他的上级作用域就是谁。
+      
+       */
+      /*
+      var a = 12;
+
+      function fn() {
+        //argumens 实参集合
+        //arguments里有一个属性，argumens.callee 当前函数本身
+        //arguments.callee.caller 当前函数在哪里执行的，caller记录的是执行的宿主环境
+        //比如当前函数在sum函数中执行的，那么就是sum函数
+        //在全局下执行caller的结果是null
+        console.log(arguments.callee.caller);
+      }
+
+      function sum() {
+        var a = 120;
+        fn();
+      }
+
+      sum();
+      */
+      var n = 10;
+      function fn() {
+        var n = 20;
+        function f() {
+          n++;
+          console.log(n);
+        }
+        f();
+        return f;
+      }
+      var x = fn();
+      x();
+      x();
+      console.log(n);
+      //不做题，只要了解一下上级作用域怎么找的就行
+    </script>
+  </body>
+</html>
