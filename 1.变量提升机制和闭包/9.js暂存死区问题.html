@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      /* 
+      【块级私有作用域】
+
+  
+   */
+      //（1）
+      // var a = 12;
+      // if (true) {
+      //   console.log(a); //报错
+      //   let a = 13;
+      /* 基于let创建变量，会把大部分大括号{}当作一个私有作用域
+        （类似于函数的私有作用域）
+        在这里也是重新检测语法规范，看一下是否是基于新语法创建的变量 */
+      // }
+
+      //（2）var是老的语法规范，let是新的语法规范
+      // console.log(typeof a);
+      //在原有浏览器渲染机制下，基于typeof等逻辑符检测一个未被声明
+      //过的变量，不会报错，返回undefined；可以理解成浏览器的一个bug
+
+      //(3)
+      console.log(typeof a); //报错
+      let a;
+      //如果当前变量是基于ES6语法处理，在没有声明这个变量的时候使用typeof
+      //检测会直接报错，不会是undefined，解决了浏览器暂存死区的问题
+    </script>
+  </body>
+</html>
